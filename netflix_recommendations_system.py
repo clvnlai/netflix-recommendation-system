@@ -35,3 +35,5 @@ def clean(text):
     text=" ".join(text)
     return text
 data["title"] = data["title"].apply(clean)
+
+print(data.Title.sample(10))
