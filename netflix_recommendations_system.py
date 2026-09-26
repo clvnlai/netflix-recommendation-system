@@ -9,3 +9,4 @@ print(data.head())
 print(data.isnull().sum())
 
 data = data[["title", "description", "type", "listed_in"]]
+print(data.head())
