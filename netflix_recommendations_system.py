@@ -36,4 +36,4 @@ def clean(text):
     return text
 data["title"] = data["title"].apply(clean)
 
-print(data.Title.sample(10))
+print(data.title.sample(10))
