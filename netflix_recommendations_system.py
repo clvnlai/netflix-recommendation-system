@@ -43,3 +43,6 @@ feature = data["listed_in"].tolist()
 tfidf = text.TfidfVectorizer(stop_words="english")
 tfidf_matrix = tfidf.fit_transform(feature)
 similarity = cosine_similarity(tfidf_matrix)
+
+indices = pd.Series(data.index,index=data['title']).drop_duplicates()   
+                    

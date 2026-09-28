@@ -10,3 +10,8 @@ tfidf_matrix = tfidf.fit_transform(feature)
 # calculate cosine similarity
 similarity = cosine_similarity(tfidf_matrix)
 ```
+# mapping movie "title" in this case to dataset indices for fast recommendation
+
+```python
+indices = pd.Series(data.index,index=data['title']).drop_duplicates()   
+```
