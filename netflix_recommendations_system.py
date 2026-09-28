@@ -37,3 +37,9 @@ def clean(text):
 data["title"] = data["title"].apply(clean)
 
 print(data.title.sample(10))
+
+# Convert genre categories into tfidf feature vectors
+feature = data["listed_in"].tolist()
+tfidf = text.TfidfVectorizer(stop_words="english")
+tfidf_matrix = tfidf.fit_transform(feature)
+similarity = cosine_similarity(tfidf_matrix)
