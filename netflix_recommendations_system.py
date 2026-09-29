@@ -3,6 +3,7 @@ import pandas as pd
 import nltk
 import re
 import string
+import difflib
 from sklearn.feature_extraction import text
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.corpus import stopwords
@@ -50,15 +51,46 @@ similarity = cosine_similarity(tfidf_matrix)
 indices = pd.Series(data.index,index=data['title']).drop_duplicates()   
 indices_lower = {title.lower().strip(): index for title, index in indices.items()}
 
+def normalize(s):
+    return re.sub(r'[\W_]+', '', str(s).lower())
+
+normalized_to_index = {}
+for i, t in enumerate(data["title"]):
+    normalized_to_index.setdefault(normalize(t), i)
+
+normalized_titles = list(normalized_to_index.keys())
+
+def find_title_index(query):
+    """Returns (index, was_corrected) or (None, False)."""
+    key = normalize(query)
+
+    if key in normalized_to_index:
+        return normalized_to_index[key], False
+
 # Function to recommend movies and shows on Netflix
 def netFlix_recommendation(title, similarity = similarity):
     cleaned_title = title.lower().strip()
 
     if cleaned_title not in indices_lower:
         return f"Sorry, '{title}' was not found in the dataset. Please check the spelling!"
+
+    close = difflib.get_close_matches(key, normalized_titles, n=1, cutoff=0.75)
+    if close:
+        return normalized_to_index[close[0]], True
+    return None, False
+
+def netFlix_recommendation(title, similarity=similarity):
+    idx, was_corrected = find_title_index(title)
+
+    if idx is None:
+        return f"Sorry, '{title}' was not found in the dataset. Please check the spelling!"
     
+    if was_corrected:
+        matched_title = data['title'].iloc[idx]
+        print(f"(Matched '{title}' to closest title: '{matched_title}')\n")
+
     index = indices_lower[cleaned_title]
-    similarity_scores = list(enumerate(similarity[index]))
+    similarity_scores = list(enumerate(similarity[idx]))
     similarity_scores = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
     
     similarity_scores = [s for s in similarity_scores if s[0] != index][:10]

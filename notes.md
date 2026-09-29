@@ -15,3 +15,5 @@ similarity = cosine_similarity(tfidf_matrix)
 ```python
 indices = pd.Series(data.index,index=data['title']).drop_duplicates()   
 ```
+
+# fuzzy matching (handles spaces or typo)
