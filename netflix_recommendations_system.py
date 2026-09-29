@@ -65,6 +65,11 @@ def find_title_index(query):
     if key in normalized_to_index:
         return normalized_to_index[key], False
 
+    close = difflib.get_close_matches(key, normalized_titles, n=1, cutoff=0.75)
+    if close:
+        return normalized_to_index[close[0]], True
+    return None, False
+
 # Function to recommend movies and shows on Netflix
 def netFlix_recommendation(title, similarity=similarity):
     idx, was_corrected = find_title_index(title)
