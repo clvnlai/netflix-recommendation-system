@@ -12,7 +12,9 @@ stemmer = nltk.SnowballStemmer("english")
 stopword=set(stopwords.words("english"))
 
 data = pd.read_csv("netflix_titles.csv")
-print(data.head())
+data = data[["title", "description", "type", "listed_in"]].dropna().reset_index(drop=True)
+
+data["original_title"] = data["title"]
 
 print(data.isnull().sum())
 
@@ -34,7 +36,8 @@ def clean(text):
     text = [stemmer.stem(word) for word in text.split(' ')]
     text=" ".join(text)
     return text
-data["title"] = data["title"].apply(clean)
+
+data["clean_title"] = data["original_title"].apply(clean)
 
 print(data.title.sample(10))
 
