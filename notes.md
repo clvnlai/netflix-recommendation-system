@@ -1,4 +1,4 @@
-<!-- This is for TfidVectorizer -->
+# This is for TfidVectorizer 
 
 # note to self: this is TfidVectorizer, when e.g. comparing data (like, text) with  cosine similarity  
 ```python
