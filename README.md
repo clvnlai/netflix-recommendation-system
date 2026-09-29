@@ -54,3 +54,9 @@ Name: title, dtype: object
 ## Limitations & future work
 - Content-based only; it doesn't use user ratings or viewing history.
 - Could add cast/director features, or a web UI with Streamlit.
+
+## Acknowledgements
+Inspired by [Netflix Recommendation System using Python](https://amanxai.com/2022/07/05/netflix-recommendation-system-using-python/) by AmanXai. The base approach (TF-IDF + cosine similarity) follows that tutorial. My additions:
+- Fed NLTK-cleaned genres + descriptions into the model (the original used genres only)
+- Typo-tolerant title search with normalization and fuzzy matching (`difflib`)
+- Fixed the queried title appearing in its own recommendations
