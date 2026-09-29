@@ -49,9 +49,6 @@ tfidf = text.TfidfVectorizer(stop_words="english")
 tfidf_matrix = tfidf.fit_transform(feature)
 similarity = cosine_similarity(tfidf_matrix)
 
-indices = pd.Series(data.index,index=data['title']).drop_duplicates()   
-indices_lower = {title.lower().strip(): index for title, index in indices.items()}
-
 def normalize(s):
     return re.sub(r'[\W_]+', '', str(s).lower())
 
