@@ -81,11 +81,10 @@ def netFlix_recommendation(title, similarity=similarity):
         matched_title = data['title'].iloc[idx]
         print(f"(Matched '{title}' to closest title: '{matched_title}')\n")
 
-    index = indices_lower[cleaned_title]
     similarity_scores = list(enumerate(similarity[idx]))
     similarity_scores = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
     
-    similarity_scores = [s for s in similarity_scores if s[0] != index][:10]
+    similarity_scores = [s for s in similarity_scores if s[0] != idx][:10]
     
     movieindices = [i[0] for i in similarity_scores]
     return data['title'].iloc[movieindices]
