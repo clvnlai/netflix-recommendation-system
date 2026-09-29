@@ -32,6 +32,51 @@ Top Recommendations:
 
 ```
 
+## Sample Output
+PS C:\Users\user\Desktop\selfprojects\netflix-recommendation-system>  c:; cd 'c:\Users\user\Desktop\selfprojects\netflix-recommendation-system'; & 'C:\Users\user\AppData\Local\Microsoft\WindowsApps\python3.11.exe' 'c:\Users\user\.vscode\extensions\ms-python.debugpy-2026.6.0-win32-x64\bundled\libs\debugpy\launcher' '53216' '--' 'C:\Users\user\Desktop\selfprojects\netflix-recommendation-system\netflix_recommendations_system.py' 
+[nltk_data] Downloading package stopwords to
+[nltk_data]     C:\Users\user\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+title             0
+description       0
+type              0
+listed_in         0
+original_title    0
+dtype: int64
+                   title                                        description     type                                          listed_in
+0   Dick Johnson Is Dead  As her father nears the end of his life, filmm...    Movie                                      Documentaries
+1          Blood & Water  After crossing paths at a party, a Cape Town t...  TV Show    International TV Shows, TV Dramas, TV Mysteries
+2              Ganglands  To protect his family from a powerful drug lor...  TV Show  Crime TV Shows, International TV Shows, TV Act...
+3  Jailbirds New Orleans  Feuds, flirtations and toilet talk go down amo...  TV Show                             Docuseries, Reality TV
+4           Kota Factory  In a city of coaching centers known to train I...  TV Show  International TV Shows, Romantic TV Shows, TV ...
+826                           Bo Burnham: Inside
+1509        Ariana grande: excuse me, i love you
+8024                                      Single
+5448               Amelia: A Tale of Two Sisters
+7313    Little Lunch: The Halloween Horror Story
+3234                    What the F* Is Going On?
+2539                           Fire in the Blood
+3903                               Someone Great
+5892                                      Circle
+7582                                     Nibunan
+Name: title, dtype: object
+Enter a movie or TV show name: peaky blinderz
+
+Top Recommendations:
+(Matched 'peaky blinderz' to closest title: 'Peaky Blinders')
+
+8293                         The Fear
+8334          The Great Train Robbery
+7140    Jonathan Strange & Mr Norrell
+3503                  Criminal: Spain
+3361                           Tunnel
+8431            The Murder Detectives
+3589                     Sacred Games
+5752                         Spotless
+2736                  Man Like Mobeen
+2606                  Extracurricular
+Name: title, dtype: object
+PS C:\Users\user\Desktop\selfprojects\netflix-recommendation-system> 
 
 ## Limitations & future work
 - Content-based only; it doesn't use user ratings or viewing history.
