@@ -26,15 +26,15 @@ data = data.dropna()
 
 def clean(text):
     text = str(text).lower()
-    text = re.sub('\[.*?\]', '', text)
-    text = re.sub('https?://\S+|www\.\S+', '', text)
-    text = re.sub('<.*?>+', '', text)
+    text = re.sub(r'\[.*?\]', '', text)                    
+    text = re.sub(r'https?://\S+|www\.\S+', '', text)     
+    text = re.sub(r'<.*?>+', '', text)                     
     text = re.sub('[%s]' % re.escape(string.punctuation), '', text)
     text = re.sub('\n', '', text)
-    text = re.sub('\w*\d\w*', '', text)
-    text = [word for word in text.split(' ') if word not in stopword]
+    text = re.sub(r'\w*\d\w*', '', text)                  
+    text = [word for word in text.split() if word not in stopword]   
     text=" ".join(text)
-    text = [stemmer.stem(word) for word in text.split(' ')]
+    text = [stemmer.stem(word) for word in text.split()]             
     text=" ".join(text)
     return text
 
@@ -68,17 +68,6 @@ def find_title_index(query):
         return normalized_to_index[key], False
 
 # Function to recommend movies and shows on Netflix
-def netFlix_recommendation(title, similarity = similarity):
-    cleaned_title = title.lower().strip()
-
-    if cleaned_title not in indices_lower:
-        return f"Sorry, '{title}' was not found in the dataset. Please check the spelling!"
-
-    close = difflib.get_close_matches(key, normalized_titles, n=1, cutoff=0.75)
-    if close:
-        return normalized_to_index[close[0]], True
-    return None, False
-
 def netFlix_recommendation(title, similarity=similarity):
     idx, was_corrected = find_title_index(title)
 
