@@ -37,7 +37,7 @@ def clean(text):
     text=" ".join(text)
     return text
 
-data["clean_title"] = data["original_title"].apply(clean)
+data["clean_title"] = data["title"].apply(clean)
 
 print(data.title.sample(10))
 
@@ -58,4 +58,6 @@ def netFlix_recommendation(title, similarity = similarity):
     movieindices = [i[0] for i in similarity_scores]
     return data['title'].iloc[movieindices]
 
-print(netFlix_recommendation("girlfriend"))
+user_movie = input("Enter a movie or TV show name: ")
+print("\nTop Recommendations:")
+print(netFlix_recommendation(user_movie))
